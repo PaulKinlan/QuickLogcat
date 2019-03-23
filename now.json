@@ -1,0 +1,40 @@
+{
+  "name": "quicklogcat.com",
+  "version": 2,
+  "github": {
+    "enabled": false
+  },
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build"
+    }
+  ],
+  "routes": [
+    {
+      "src" : ".mjs$",
+      "headers" : {
+        "content-type": "text/javascript",
+        "cache-control": "max-age=7200"
+      }
+    },
+    {
+      "src" : ".(jpg|jpeg|gif|png|svg)$",
+      "headers" :{
+        "cache-control": "max-age=7200"
+      }
+    },
+    {
+      "src" : ".css$",
+      "headers" : {
+        "cache-control": "max-age=7200"
+      }
+    },
+    {
+      "src": ".(js|json)$",
+      "headers" : {
+        "cache-control": "max-age=7200"
+      }
+    }
+  ]
+}

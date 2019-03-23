@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quick Logcat</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'">
+  <meta name="description" content="Quickly connect to your Android Device to get LogCat data.">
+
+  <!-- Add to homescreen -->
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Fallback to homescreen for Chrome <39 on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Quick LogCat">
+  <link rel="icon" sizes="192x192" href="/images/touch/chrome-touch-icon-192x192.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Quick LogCat">
+  <link rel="apple-touch-icon" href="/images/touch/apple-touch-icon.png">
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="/images/touch/ms-touch-icon-144x144-precomposed.png">
+  <meta name="msapplication-TileColor" content="#212121">
+
+  <meta name="theme-color" content="#212121">
+  <link rel="stylesheet" href="/styles/all.css">
+  <script type="module">
+    import LogcatController from "/scripts/main.mjs";
+
+    onload = () => {
+      const connect = document.getElementById("connect");
+      const output = document.getElementById("output");
+      let controller = new LogcatController();
+
+      connect.addEventListener("click", async () => {
+        await controller.connect();
+        controller.logcat((log) => {
+          output.innerText += log;
+        })
+      });
+    };
+  </script>
+  <script src="/scripts/main.js" defer nomodule></script>
+</head>
+
+<body>
+  <header>
+    <h1>Quick LogCat</h1>
+  </header>
+  <main>
+    <p><b>Warning</b>: Use at your own risk. There are no warranties or guarentees with this site. It uses ADB.JS and some of my own code, and everything is done in browser. The ADB protocol is a debbuging protocol and as such it could be possible to get access to all of your data. If you don't trust this tool, your machine, or extensions in this browser, don't use this site.</p>
+    <p>Quick LogCat is a simple tool that connects to your Android phone using the ADB protocol over the WebUSB API.</p>
+    <p><em>Why?</em> I needed a quick way to get a Logcat output from my KaiOS device on Chrome OS without installing ADB.</p>
+    <div id="controls">
+      <button id="connect">Connect</button>
+    </div>
+    <pre id="output"></pre>
+  </main>
+</body>
+
+</html>
