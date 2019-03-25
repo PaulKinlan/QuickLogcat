@@ -1,19 +1,18 @@
-QR Snapper
-==========
+Quick LogCat
+============
 
-A simple, small, progressive web app that accesses the user's camera
-and looks for QR Codes.
+A simple tool that will connect to your Android Device and run logcat.
 
-The QR Code library is a port of [JSQRCode](https://github.com/LazarSoft/jsqrcode) and has been ported to work inside a WebWorker for performance.
+This is useful for debugging Android devices from a browser such as Chrome OS, or if you don't want to debug any Android device
+without having to install ADB.
 
+*Warning*: Use at your own risk. There are no warranties or guarentees with this site. It uses ADB.JS and some of my own code, and everything is done in browser. The ADB protocol is a debbuging protocol and as such it could be possible to get access to all of your data. If you don't trust this tool, your machine, or extensions in this browser, don't use this site.
+   
+This site uses the awesome [webadb.js](https://github.com/webadb/webadb.js).
 
 Building yourself
 =================
 
 1. `npm install`
-2. `gulp serve` to test locally
-3. `gulp` to Building
-4. This is deployed on zeit, but you can host anywhere.
-
-Note: All changes to the build need to be done in `gulpfile.babel.js` and then run `rollup gulpfile.babel.js -f cjs -o gulpfile.js` to get it
-to work in gulp
+2. `npm run serve` to test locally
+3. `npm run build` to Building
