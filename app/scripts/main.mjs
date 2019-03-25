@@ -73,7 +73,7 @@ export default class LogcatController {
       try {
         this._adb = null;
         this._adb = await this._webusb.connectAdb("host::", () =>
-          this.connect_message("Please check the screen of your " + this._webusb.device.productName + "."));
+          console.log("Please check the screen of your " + this._webusb.device.productName + "."));
 
         if (this._adb != null) {
           console.log("ADB mode");
