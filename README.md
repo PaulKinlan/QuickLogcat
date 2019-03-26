@@ -10,6 +10,8 @@ without having to install ADB.
    
 This site uses the awesome [webadb.js](https://github.com/webadb/webadb.js).
 
+![Demo](https://user-images.githubusercontent.com/45510/54993365-a96c5680-4fe7-11e9-9d05-c2d87bdda089.png)
+
 Building yourself
 =================
 
