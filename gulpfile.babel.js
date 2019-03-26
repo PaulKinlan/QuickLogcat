@@ -1,7 +1,7 @@
 /**
  *
- *  QR Snapper
- *  Copyright 2018 Google Inc. All rights reserved.
+ *  Quick Logcat
+ *  Copyright 2019 Google Inc. All rights reserved.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -116,39 +116,6 @@ let sw = () => {
   })
 }
 
-let worker_prep_lib = () => {
-  // Get all the QR code libs and put them in a tmp dir
-  return gulp
-            .src('app/scripts/jsqrcode/*.js')
-            .pipe($.concat('qrcode.js'))
-            .pipe(gulp.dest('.tmp/scripts/'));
-}
-
-let worker_prep = () => {
-  return gulp
-            .src('app/scripts/*.js')
-            .pipe(gulp.dest('.tmp/scripts/'));
-}
-
-let worker = () => {
-  return rollup({
-    input: '.tmp/scripts/qrworker.js',
-    plugins: [
-      babel({
-        babelrc: false,
-        presets: [['@babel/env',{"targets": { "chrome": "52" }}]],
-        exclude: 'node_modules/**'
-      }),
-      terser()
-    ]
-  }).then(bundle => {
-    return bundle.write({
-      file: './dist/scripts/qrworker.js',
-      format: 'iife'
-    })
-  })
-}
-
 let client_modules = () => {
   return rollup({
     input: './app/scripts/main.mjs',
@@ -170,18 +137,21 @@ let client = () => {
       babel({
         babelrc: false,
         presets: [['@babel/env',{"targets": { "chrome": "41" }}]],
-        exclude: 'node_modules/**'
+        exclude: 'node_modules/**',
       }),
       terser()
     ]
   }).then(bundle => {
     return bundle.write({
       file: './dist/scripts/main.js',
+      name: 'main.js',
       format: 'iife'
     })
   })
 };
 
-let build = gulp.series(clean, copy, gulp.parallel(client, client_modules, sw, gulp.series(worker_prep_lib, worker_prep, worker), styles, html, images));
+let build = gulp.series(clean, copy, gulp.parallel(client, client_modules, sw, styles, html, images));
 
 gulp.task('default', build);
+gulp.task('client_modules', client_modules);
+gulp.task('client', client);
