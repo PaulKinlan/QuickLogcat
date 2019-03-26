@@ -66,7 +66,7 @@ let styles = () => {
     // .pipe($.newer('.tmp/styles'))
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe(gulp.dest('.tmp/styles'))
-    .pipe($.concat('app.css'))
+    .pipe($.concat('all.css'))
     // Concatenate and minify styles
     .pipe($.cssnano())
     .pipe($.size({title: 'styles'}))
