@@ -1,9 +1,7 @@
 // SPDX-License-Identifier: MIT
-
-var Adb = {};
+let Adb = {};
 
 export {Adb};
-
 
 (function() {
 	'use strict';

@@ -17,13 +17,11 @@
  *
  */
 
-import { Adb } from './webadb.js';
+import { Adb } from './webadb.mjs';
 
 /*
-
 Some thoughts on future archtecture. 
 Need to probably think of a way to create commands, that can then be stopped via UI vs this lump of code.
-
 */
 
 export default class LogcatController {
@@ -34,7 +32,7 @@ export default class LogcatController {
     this._adb = null;
   }
 
-  connect = async () => {
+  async connect() {
     try {
       if (this._webusb != null) {
         disconnect_usb();
@@ -89,7 +87,7 @@ export default class LogcatController {
     }
   };
 
-  logcat = async (output = () => {}) => {
+  async logcat(output = () => {}) {
     let decoder = new TextDecoder();
     let adb = this._adb;
     let fastboot = this._fastboot;
@@ -134,4 +132,4 @@ export default class LogcatController {
       this._fastboot = null;
     }
   }
-};
+}

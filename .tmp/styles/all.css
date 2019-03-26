@@ -1,0 +1,11 @@
+#controls {
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+#output {
+  margin: 1em;
+  background-color: black;
+  color: white;
+  overflow: auto;
+}

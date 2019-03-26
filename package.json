@@ -23,18 +23,19 @@
   "scripts": {
     "now-build": "gulp",
     "build": "gulp",
+    "start": "npm run build && npm run serve",
     "serve": "serve -l tcp:0.0.0.0:8080 dist",
     "serve:dev": "serve -l tcp:0.0.0.0:8080 app",
     "clean": "rm dist/*"
   },
   "dependencies": {
     "@babel/register": "^7.0.0",
-    "comlink": "^3.1.1",
     "gulp-rollup": "^2.16.2",
     "now": "^13.1.2",
-    "rollup": "^1.1.0",
-    "rollup-plugin-terser": "^4.0.2",
-    "serve": "^10.1.1"
+    "rollup": "^1.7.3",
+    "rollup-plugin-terser": "^4.0.4",
+    "serve": "^10.1.2",
+    "gulp-cli": "^2.0.1"
   },
   "babel": {
     "presets": [
